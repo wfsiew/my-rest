@@ -1,0 +1,39 @@
+@base_url = http://localhost:8100
+@client_id = cLpklxtQpoYE6yb43PO6167OtlWDzTA81jcKzDJJ
+
+###
+
+# username = wfsiew, password.123
+# username = admin, admin123
+
+###
+
+# @name login
+POST {{base_url}}/o/token/
+Content-Type: application/x-www-form-urlencoded
+
+username=admin
+&password=admin123
+&client_id={{client_id}}
+&grant_type=password
+
+###
+
+@token = {{login.response.body.access_token}}
+@rtoken = {{login.response.body.refresh_token}}
+
+###
+
+GET {{base_url}}/app/data
+
+###
+
+GET {{base_url}}/app/secure/data
+Authorization: Bearer {{token}}
+
+###
+
+GET {{base_url}}/app/user
+Authorization: Bearer {{token}}
+
+###

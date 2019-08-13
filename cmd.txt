@@ -1,0 +1,4 @@
+python -m virtualenv virtual
+.\virtual\Scripts\activate
+
+waitress-serve --port=8000 my_rest:wsgi.application
